@@ -20,3 +20,7 @@ app.get("/about", function (req, res) {
 app.get("/contact", function (req, res) {
   res.render("pages/contact");
 });
+
+app.get("/versorteos", function (req, res) {
+  res.send("Boletos disponibles: Tecnologico, Siembra Cultural");
+});

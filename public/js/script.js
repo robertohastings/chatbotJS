@@ -1,5 +1,8 @@
 //const { response } = require("express");
 
+const { response } = require("express");
+const { axios } = require("axios");
+
 var sendBtn = document.getElementById("sendBtn");
 var textbox = document.getElementById("textbox");
 var chatContainer = document.getElementById("chatContainer");
@@ -11,6 +14,12 @@ var arrayOfPossibleMessage = [
   { message: "hi", response: "hello" },
   { message: "how are you?", response: "I am good thanks you for ask" },
   { message: "what is your name?", response: "I am a chatbot!" },
+  {
+    message: "hola",
+    response:
+      "¡Hola que tal! <br> Seleccione algún número de las siguientes opciones: <br> 1) Ver Sorteos Disponibles<br> 2) Comprar Boletos <br>",
+  },
+  { message: "1", response: "Ver Sorteos" },
 ];
 
 function sendMessage(userMessage) {
@@ -24,7 +33,6 @@ function sendMessage(userMessage) {
 }
 
 function chatbotRespond(userMessage) {
-  //console.log("userMessage:", userMessage);
   var chatbotMessage = "";
 
   var result = arrayOfPossibleMessage.filter((val) =>
@@ -38,9 +46,22 @@ function chatbotRespond(userMessage) {
     chatbotMessage = "Please send another message";
   }
 
+  if (result[0].response === "Ver Sorteos") {
+    BoletosDisponibes();
+  }
+
   var messageElement = document.createElement("div");
+
   messageElement.innerHTML =
     "<span> Chatbot: </span>" + "<span>" + chatbotMessage + "</span>";
+
+  //   var menuLista = document.createElement("ul");
+  //   var opcionMenu = document.createElement("li");
+  //   opcionMenu.appendChild(document.createTextNode("1. Ver Sorteos Disponibles"));
+  //   opcionMenu.appendChild(document.createTextNode("2. Comprar Boleto"));
+  //   menuLista.appendChild(opcionMenu);
+
+  //   messageElement.appendChild(menuLista);
 
   setTimeout(() => {
     messageElement.animate(
@@ -65,3 +86,14 @@ sendBtn.addEventListener("click", function (e) {
     chatbotRespond(userMessageText);
   }
 });
+
+async function BoletosDisponibes() {
+  await axios
+    .get("/versorteos")
+    .then((response) => {
+      console.log("respuesta:", response);
+    })
+    .catch((error) => {
+      console.log("error:", error);
+    });
+}
