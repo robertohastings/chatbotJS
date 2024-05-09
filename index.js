@@ -12,3 +12,11 @@ app.get("/", function (req, res) {
   //res.send("Hello");
   res.render("pages/index");
 });
+
+app.get("/about", function (req, res) {
+  res.render("pages/about");
+});
+
+app.get("/contact", function (req, res) {
+  res.render("pages/contact");
+});

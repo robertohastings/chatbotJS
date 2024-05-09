@@ -24,24 +24,32 @@ function sendMessage(userMessage) {
 }
 
 function chatbotRespond(userMessage) {
-  console.log("userMessage:", userMessage);
+  //console.log("userMessage:", userMessage);
   var chatbotMessage = "";
 
   var result = arrayOfPossibleMessage.filter((val) =>
     val.message.includes(userMessage.toLowerCase())
   );
+
   if (result.length > 0) {
     var response = result[0].response;
     chatbotMessage = response;
   } else {
-    chatbotMessage = "No se encontró respuesta";
+    chatbotMessage = "Please send another message";
   }
 
   var messageElement = document.createElement("div");
   messageElement.innerHTML =
     "<span> Chatbot: </span>" + "<span>" + chatbotMessage + "</span>";
 
-  chatContainer.appendChild(messageElement);
+  setTimeout(() => {
+    messageElement.animate(
+      [{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }],
+      { duration: 1000 }
+    );
+    chatContainer.appendChild(messageElement);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }, 1000);
 }
 
 sendBtn.addEventListener("click", function (e) {

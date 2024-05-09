@@ -13,6 +13,7 @@ ul{
 li{
     float: left;
     border-right: 1px solid #bbb;
+    color: white
 }
 li:last-child{
     border-right: none;
@@ -20,7 +21,6 @@ li:last-child{
 
 li a{
     display: block;
-    color: white;
     text-decoration: none;
     padding: 14px 16px;
     text-align: center;
