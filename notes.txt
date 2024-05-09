@@ -1,0 +1,11 @@
+1. npm install
+2. npm init
+3. npm install --save express
+4. npm install ejs --save     (This allows to pass data to html)
+5. npm install --save request
+6. crear en raiz index.js
+7. crear folder en raiz public
+    -css/main.css
+    -img
+    -js/script.js
+8. crear folder en raiz: views/pages    
