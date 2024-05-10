@@ -1,7 +1,7 @@
 //const { response } = require("express");
 
-const { response } = require("express");
-const { axios } = require("axios");
+//const { response } = require("express");
+//const { axios } = require("axios");
 
 var sendBtn = document.getElementById("sendBtn");
 var textbox = document.getElementById("textbox");
@@ -46,9 +46,9 @@ function chatbotRespond(userMessage) {
     chatbotMessage = "Please send another message";
   }
 
-  if (result[0].response === "Ver Sorteos") {
-    BoletosDisponibes();
-  }
+  //   if (result[0].response === "Ver Sorteos") {
+  //     BoletosDisponibes();
+  //   }
 
   var messageElement = document.createElement("div");
 
@@ -74,6 +74,7 @@ function chatbotRespond(userMessage) {
 }
 
 sendBtn.addEventListener("click", function (e) {
+  alert("prueba");
   var userMessage = textbox.value;
 
   if (!userMessage) {
@@ -87,13 +88,13 @@ sendBtn.addEventListener("click", function (e) {
   }
 });
 
-async function BoletosDisponibes() {
-  await axios
-    .get("/versorteos")
-    .then((response) => {
-      console.log("respuesta:", response);
-    })
-    .catch((error) => {
-      console.log("error:", error);
-    });
-}
+// async function BoletosDisponibes() {
+//   await axios
+//     .get("/versorteos")
+//     .then((response) => {
+//       console.log("respuesta:", response);
+//     })
+//     .catch((error) => {
+//       console.log("error:", error);
+//     });
+// }
